@@ -1,0 +1,734 @@
+{
+  "info": {
+    "name": "Freely Mock API",
+    "description": "Mock backend for the Freely Android app, read by `NetworkFreelyRepository`. Every response was generated from `MockFreelyData.kt`, the app's built-in offline copy of this data; `FreelyApiContractTest` checks they match.\n\n**Set up:** create a mock server from this collection, then paste its URL into the `baseUrl` collection variable.\n\n**Contract (the app parses with Gson):**\n- JSON keys are the Kotlin property names (camelCase). Enums are their constant names (`Online`, `Read`, `VoiceNote`, ...).\n- Every non-null field is always present. Gson bypasses Kotlin constructors, so a missing field arrives as null even when the Kotlin type is non-null.\n- Chat messages carry a `type` of `Text`, `VoiceMemo` or `Place` that selects the `ChatMessage` subclass.\n- Image URLs are Stitch-hosted; the app appends `=s<px>` to load resized copies. The current user's photo is from Unsplash and carries its own size parameters.\n\nForce a specific example with the `x-mock-response-name` header (e.g. `family`) or `x-mock-response-code: 404`.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Discover feed",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/discover",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "discover"
+          ]
+        },
+        "description": "Discover tab. `FreelyRepository.getDiscoverFeed()` -> `DiscoverFeed`."
+      },
+      "response": [
+        {
+          "name": "200 OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/discover",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "discover"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"radiusLabel\": \"Within 5 km\",\n  \"featured\": {\n    \"id\": \"chloe\",\n    \"name\": \"Chloe Bennett\",\n    \"age\": 24,\n    \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuB7sH6T7M9MkXDTmTN3pjP6gnaz_JP5Vv6fxoe19iDjJgzNynzkC6nAKhAv41zi-1Ml-r0iV9U3Cqps9OnLwxWvHbuQrtk16hJpLoaLGJ1mfMFVeP5R7OO_uyYTaIjpWpbJTuA0kuXp_7bRBlCRpoEMHr6EOSv52oy5ag_4R8Z_AJfgn448wYMYIflnCtHgNLPIbpjSomYB_Hj5EFI4DBkTVdwFpZXVU2x4kOtlC1h4mIIbOcu9ofz7RQ\",\n    \"presence\": \"Online\",\n    \"headline\": \"Graphic Designer\",\n    \"mutuals\": \"3 mutuals in Design Freely\",\n    \"interests\": [\n      {\n        \"emoji\": \"☕\",\n        \"label\": \"Coffee Hopping\"\n      },\n      {\n        \"emoji\": \"🎨\",\n        \"label\": \"Pottery\"\n      },\n      {\n        \"emoji\": \"🪴\",\n        \"label\": \"Indoor Jungle\"\n      }\n    ],\n    \"askMeAbout\": \"My favorite secret corner bookshops & warm matcha spots in the city!\",\n    \"isVerified\": true,\n    \"hasNewMoment\": true,\n    \"photoUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuAAjJ8DvXKnnwQ1TDUgKTc5basiJLlHodz5IrAMh4sGnJtDvc2lYYrBCU8eqFkEgNya0R62CU4FUzB_bWGjpuJJu1NFFyK7tQmYmHJWV2t83ZXfIrkcUldw-FkWmcz-fU9A1zyZxkJtoYSerjXqxRlfKXXrQJL261lA7Vcs9cGBTJxpi-YzVuiBxYf0YxN5vIMz53XsQSq-cPgr4hf-RuxxU7ltYgaGnUIIIufwohyN0QHuwGjQg3uXvQ\"\n  },\n  \"circles\": [\n    {\n      \"id\": \"sofia\",\n      \"name\": \"Sofia\",\n      \"age\": 23,\n      \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuBzCrwAeMTasasaLpSMnWo4mXmfHt28-QyJ-qfxQ6o1MuCp2ll0ssE5xJW1cYXGbc2E1mkvbObF-CZMiXFBrYw6humUoKrZE_kxFfi2aWzY-HUtf1USeybHoAcIhUOkCx4r0HBNACYII8uv6NCn0508FmKtAAFR1GcClMCblGJfSPJMOrMHId9AXnyKwuByoLvfEghe323cdWs5M6sIjMfxuOPDwU6MIOUx7O-8_mE3rPysHtiC3U88bw\",\n      \"presence\": \"Online\",\n      \"headline\": \"Pastry Chef\",\n      \"mutuals\": \"5 mutuals in Brunch Club\",\n      \"interests\": [\n        {\n          \"emoji\": \"🥐\",\n          \"label\": \"Weekend Baking\"\n        },\n        {\n          \"emoji\": \"💃\",\n          \"label\": \"Salsa Nights\"\n        },\n        {\n          \"emoji\": \"📚\",\n          \"label\": \"Book Swaps\"\n        }\n      ],\n      \"askMeAbout\": \"The flakiest croissant I've ever made, and the three I burned first.\",\n      \"isVerified\": false,\n      \"hasNewMoment\": true,\n      \"photoUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuBzCrwAeMTasasaLpSMnWo4mXmfHt28-QyJ-qfxQ6o1MuCp2ll0ssE5xJW1cYXGbc2E1mkvbObF-CZMiXFBrYw6humUoKrZE_kxFfi2aWzY-HUtf1USeybHoAcIhUOkCx4r0HBNACYII8uv6NCn0508FmKtAAFR1GcClMCblGJfSPJMOrMHId9AXnyKwuByoLvfEghe323cdWs5M6sIjMfxuOPDwU6MIOUx7O-8_mE3rPysHtiC3U88bw\"\n    },\n    {\n      \"id\": \"marcus\",\n      \"name\": \"Marcus\",\n      \"age\": 26,\n      \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuBBMkXoOEQKeLKbPdcWUDJwfHy3zAvATRRdSR325sjM4Q0FBmf32e6aTYUNiu51ZWhPvjmJEUedUlqie8KmVIJJS2soFXfaFyz8-6HH3zMl0fHvgYi4m5zsdBxthbxQBYMd8PddRgMvg6yTfO7ai_bCysKLTIfq5iT4a_0Msh04XWUqan-VMhM6QsK-OdgN6DyUPm3LElAyYdxI5T41Z7lZf7VzimQCVpzs5EGvDaoCawh-bnkEz9FmoQ\",\n      \"presence\": \"Online\",\n      \"headline\": \"Street Photographer\",\n      \"mutuals\": \"2 mutuals in Photo Walks\",\n      \"interests\": [\n        {\n          \"emoji\": \"📷\",\n          \"label\": \"Film Cameras\"\n        },\n        {\n          \"emoji\": \"🚲\",\n          \"label\": \"City Rides\"\n        },\n        {\n          \"emoji\": \"🎧\",\n          \"label\": \"Lo-fi Beats\"\n        }\n      ],\n      \"askMeAbout\": \"Hidden rooftops with the best golden-hour light.\",\n      \"isVerified\": true,\n      \"hasNewMoment\": true,\n      \"photoUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuBBMkXoOEQKeLKbPdcWUDJwfHy3zAvATRRdSR325sjM4Q0FBmf32e6aTYUNiu51ZWhPvjmJEUedUlqie8KmVIJJS2soFXfaFyz8-6HH3zMl0fHvgYi4m5zsdBxthbxQBYMd8PddRgMvg6yTfO7ai_bCysKLTIfq5iT4a_0Msh04XWUqan-VMhM6QsK-OdgN6DyUPm3LElAyYdxI5T41Z7lZf7VzimQCVpzs5EGvDaoCawh-bnkEz9FmoQ\"\n    },\n    {\n      \"id\": \"aaliyah\",\n      \"name\": \"Aaliyah\",\n      \"age\": 25,\n      \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuCCBGM6Hs52KZOD5N3liH9bOO2xW_KvDuqi1PKmN34qtau6BTl6lI5FJI39TAnJDrDf4n04RnNEVzwTMG9aX_5vLU6lX9WTEIuVFNGcxz2BmeKpnCjLecMHxQ-EiH66uvbfJcQhKTwFqdrTcJN3sUeWwS-nwt_MU_G7Q3-VVzzyoiNbdXr6p7yRsajyF2tYb8Nt5ry8PecvrhA2ehMolrWLxTb0vYJO1JJd8HL_sQv33IYXmgS1CvdsQg\",\n      \"presence\": \"Online\",\n      \"headline\": \"Illustrator\",\n      \"mutuals\": \"4 mutuals in Design Freely\",\n      \"interests\": [\n        {\n          \"emoji\": \"✏️\",\n          \"label\": \"Sketchbooks\"\n        },\n        {\n          \"emoji\": \"🌿\",\n          \"label\": \"Plant Swaps\"\n        },\n        {\n          \"emoji\": \"🎬\",\n          \"label\": \"Indie Films\"\n        }\n      ],\n      \"askMeAbout\": \"Which cafés still let you doodle on the napkins (I keep a list).\",\n      \"isVerified\": false,\n      \"hasNewMoment\": true,\n      \"photoUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuCCBGM6Hs52KZOD5N3liH9bOO2xW_KvDuqi1PKmN34qtau6BTl6lI5FJI39TAnJDrDf4n04RnNEVzwTMG9aX_5vLU6lX9WTEIuVFNGcxz2BmeKpnCjLecMHxQ-EiH66uvbfJcQhKTwFqdrTcJN3sUeWwS-nwt_MU_G7Q3-VVzzyoiNbdXr6p7yRsajyF2tYb8Nt5ry8PecvrhA2ehMolrWLxTb0vYJO1JJd8HL_sQv33IYXmgS1CvdsQg\"\n    },\n    {\n      \"id\": \"julian\",\n      \"name\": \"Julian\",\n      \"age\": 27,\n      \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuCxl5BoZWjPREwLM7jG7rlXzG6THmfiPFYJFawNTMqyt1yo_GSUyHYpK45nQVKGitTjP-jcMkPfNuxLdBmP7CUAlGcAqn9KiyvhA-N6-z1bCvlD-_MfGd9uEl5_0ZaDY2gFnTLrgzYQPdRnq14NfZrWkwCYo0yw7DG29__8B7Yk8WLJnYLg81Wy7pXVNaBchvjNAj_XYj5TYqi1FLntIIseTdozxgFjECJM5ChJVeMFFkllRWIAl7YJhQ\",\n      \"presence\": \"Away\",\n      \"headline\": \"Bookshop Owner\",\n      \"mutuals\": \"1 mutual in Book Club\",\n      \"interests\": [\n        {\n          \"emoji\": \"📖\",\n          \"label\": \"Mystery Novels\"\n        },\n        {\n          \"emoji\": \"♟️\",\n          \"label\": \"Chess\"\n        },\n        {\n          \"emoji\": \"☕\",\n          \"label\": \"Pour-over\"\n        }\n      ],\n      \"askMeAbout\": \"The rare first editions hiding on my top shelf.\",\n      \"isVerified\": false,\n      \"hasNewMoment\": false,\n      \"photoUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuCxl5BoZWjPREwLM7jG7rlXzG6THmfiPFYJFawNTMqyt1yo_GSUyHYpK45nQVKGitTjP-jcMkPfNuxLdBmP7CUAlGcAqn9KiyvhA-N6-z1bCvlD-_MfGd9uEl5_0ZaDY2gFnTLrgzYQPdRnq14NfZrWkwCYo0yw7DG29__8B7Yk8WLJnYLg81Wy7pXVNaBchvjNAj_XYj5TYqi1FLntIIseTdozxgFjECJM5ChJVeMFFkllRWIAl7YJhQ\"\n    },\n    {\n      \"id\": \"elena\",\n      \"name\": \"Elena\",\n      \"age\": 24,\n      \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuCeEmc5mRMaLTeV2f9pxVmjIkNI2rT2GyhvNeoZ77Hwlj2Ib39tn_j2SmMWcXSz4X4tfE5Rvt7tQvxxmqiDNi6bYhO_4o_r_ldSIej-T3ZM7eVvIVOiQLl5w2aZKhP7P_7GCLSFQeL_CmVZ1boUMYCL32gNfXNp2m64X3CRcOHDYlEggvwl80xbypC9KuWRTgILWrtVMvL25yjOgTZnTUcc24ouOMJwrf7KXCkdQAw2c6jE482CeCDSvg\",\n      \"presence\": \"Online\",\n      \"headline\": \"Botanist\",\n      \"mutuals\": \"6 mutuals in Green Thumbs\",\n      \"interests\": [\n        {\n          \"emoji\": \"🌸\",\n          \"label\": \"Botanical Gardens\"\n        },\n        {\n          \"emoji\": \"🧺\",\n          \"label\": \"Picnics\"\n        },\n        {\n          \"emoji\": \"🎻\",\n          \"label\": \"Cello\"\n        }\n      ],\n      \"askMeAbout\": \"Which houseplants survive even the busiest week.\",\n      \"isVerified\": false,\n      \"hasNewMoment\": true,\n      \"photoUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuCeEmc5mRMaLTeV2f9pxVmjIkNI2rT2GyhvNeoZ77Hwlj2Ib39tn_j2SmMWcXSz4X4tfE5Rvt7tQvxxmqiDNi6bYhO_4o_r_ldSIej-T3ZM7eVvIVOiQLl5w2aZKhP7P_7GCLSFQeL_CmVZ1boUMYCL32gNfXNp2m64X3CRcOHDYlEggvwl80xbypC9KuWRTgILWrtVMvL25yjOgTZnTUcc24ouOMJwrf7KXCkdQAw2c6jE482CeCDSvg\"\n    }\n  ],\n  \"icebreaker\": {\n    \"title\": \"Freely Icebreaker\",\n    \"body\": \"92% of chats that start with a question lead to friendship.\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Inbox",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/inbox",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "inbox"
+          ]
+        },
+        "description": "Messages tab. `FreelyRepository.getInbox()` -> `Inbox`."
+      },
+      "response": [
+        {
+          "name": "200 OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/inbox",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inbox"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"activeFreelys\": [\n    {\n      \"id\": \"me\",\n      \"name\": \"Your ping\",\n      \"avatarUrl\": \"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=512&h=512&fit=crop&crop=faces&sat=-100&con=20&auto=format&q=80\",\n      \"presence\": \"Online\",\n      \"hasNewMoment\": false,\n      \"isSelf\": true\n    },\n    {\n      \"id\": \"maya\",\n      \"name\": \"Maya\",\n      \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuDpBAd6VuAYvBWjalVJmg_Kwe8ZhT6jDRFw1mAHG7UKCqTSvA887KRzbHUT28P-4iZ1ag0ZLtSyIePB5WHlyYY1V1nKA7D58fovmkH0uH5GpilPZeim9WlhebPURe9G7ZnxTT7RYOxuLQLuyn9j-hN12Wj_WydqiDv118x1cTyF3nDECsggmDHksuMFE048oV1LBJrtoIkuJeT3sY8QlOZdYHSbhtD7YQpxPe_LFjo1-W-KY7JfzT0_3w\",\n      \"presence\": \"Online\",\n      \"hasNewMoment\": true,\n      \"isSelf\": false\n    },\n    {\n      \"id\": \"liam\",\n      \"name\": \"Liam\",\n      \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuDlZThpw9yUtjI9gtiT6T_gU6lxCYSPPT8B6Lj6ZpSOtdLaX-1dGnVZLb_TWT31EGw18TuKXu0Y_uDKOrq7eJSQ6Bzm-vFmmP-Ao81I2to_zkG4pkOSjyNBWGXzOl2BBS8J18E8QxquNT7Tw7bO_IxkMtcaWzI07BfxBWs-MrxUUkxKUdgkudm-KxkTSB6KZ2r6_GnKajzAdmWb0idM9XRRUfZhXx_1USV4srjaU92zibNCfllmMLG8Qw\",\n      \"presence\": \"Online\",\n      \"hasNewMoment\": true,\n      \"isSelf\": false\n    },\n    {\n      \"id\": \"sarah\",\n      \"name\": \"Sarah\",\n      \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuD62eBS47ia2ywthiu2LsXfl-zV5Mhd4uD-CzMHYf36ddyEfwGcz-XWuLO_bP_aGtOVBJjBRvaYeUGw8UvAvRNvr6fIljH-yy8Je1X0WFqXfQEdZLH-L3mLxqIi_bnGjX9H_nKjRLckR-t0UHwcOZWqp-d6C9lY67-EAzpD6UVBN6n5FC6A0QbquZVu530FW2f5d9JPQvXv0MtrT_vB1uJtx-A6YLKhLpo7ySaHjIsj_uCWHUpEJjOcEg\",\n      \"presence\": \"Online\",\n      \"hasNewMoment\": false,\n      \"isSelf\": false\n    },\n    {\n      \"id\": \"alex\",\n      \"name\": \"Alex\",\n      \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuBZRblpFLWXCI8lUCMAp6JbeyfLn9QEbhn8iTcOLvNCOJvRsRF3UG49Nen-H4wY7ahY55AnCaBl9JBcT6EQXxcxMpFlvA33ZwxtmZ2nURfARLdQ0etbUj5XW7KvGvWKo1sYYNpA_cuXuBfYs5m1CELI3GKJBRJFGNIt_Fo7D7N2BizSeJlZg_6KNzljExZuPIF8sRu-7L4X7QEjhJy6QBM6LP0c0Umtt0XOwYJZPZ_ZKR5FPf1m_78zCg\",\n      \"presence\": \"Online\",\n      \"hasNewMoment\": false,\n      \"isSelf\": false\n    },\n    {\n      \"id\": \"chloe\",\n      \"name\": \"Chloe\",\n      \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuAKPyjP9zIwvO1bJ6E8bKvvRLrcXbR0bGoZt4DXzlzCR6P0Gh_sZ9Y-FQ7FabPLghJHZ4pTdqjSxtMv334QqXS34gVIQFcrvbE6BqM3Woqmduv1RtcJJHKLL_KSgrUKtlUo8yeRRWVjIHMeqkmN_ehI7oKUGKRv2OAe5TLqm7XdHD7epOtPMzc6FFaLX_HXbNC90N21d0A6BaXBb8Gu7YogfNLnD5XUkkvjpbrikx7TOMqbhjqUT9ZufA\",\n      \"presence\": \"Online\",\n      \"hasNewMoment\": false,\n      \"isSelf\": false\n    }\n  ],\n  \"conversations\": [\n    {\n      \"id\": \"maya\",\n      \"title\": \"Maya Lin\",\n      \"titleEmoji\": null,\n      \"avatarUrls\": [\n        \"https://lh3.googleusercontent.com/aida-public/AB6AXuCNF1SZv-WjZDpowfJ7ltU_idPkY5AoQsY9MLEC99NK6slwiYeP26tNPxC7m2Bo8b5nrj36uL-X509ZerHSRo3C16SrVTcNPBMcRC-qFa6-DiqOu0s8hgaVMenUuInCgkphXxajpbjgbaeEUVwGdEN3hQM8r5Wml5MBfC98xxPVM6JwVR3yHkU6WXtSr6sLQ4WUdBaFeSEMZzjhYSHXMi50eAQT2SH4ujq_ALhQiHmUITlKP8ujYTTyzg\"\n      ],\n      \"presence\": \"Online\",\n      \"hasNewMoment\": true,\n      \"sender\": null,\n      \"preview\": \"Haha that sounds amazing! See you at 5 ☕\",\n      \"previewKind\": \"Text\",\n      \"timeLabel\": \"Just now\",\n      \"unreadCount\": 2,\n      \"deliveryStatus\": \"Read\"\n    },\n    {\n      \"id\": \"weekend-hikers\",\n      \"title\": \"Weekend Hikers\",\n      \"titleEmoji\": \"🌲\",\n      \"avatarUrls\": [\n        \"https://lh3.googleusercontent.com/aida-public/AB6AXuAgoV_EfON2FnXS9F0xA41TeCy-RwsUFHOkk6PdjZRa5puyV2ldiGA1KkvzDiM670ZCaYPXDSudL5RPiP2pru1Lh1utC9q23MrRiW7r9M1lm7tfJZUfsTNrtjnG4y7wWF3jHcy86IZ5-ztHUAKKfttFlT8-bn5rB2gmueNGtSVpkdtx_cUTl4qeCFBa0cO4e9YU62w5rm7A0qlDMAIaf32CtFwsSICEDGhlvocyODbhQlZ74MB_PqkDrQ\",\n        \"https://lh3.googleusercontent.com/aida-public/AB6AXuD5Imvyj77K1QSyzjjk9AKzA2ERf5cHNptn7fPfw75F-QNidylKlrHidkHtKxe43Lu3A_SNhdtRXQsqx5PwdoNRtqEgY6LlsHT-_deqwGucQf-ucHVZ775sejWve4Eb-xrOUDFblxdp01Qwrh-J-_vz2p1tavxSPaVHxGTBSCNDpag1H7BVFrG2CZ9Ypcx-g_v-DCu6JZAIzaueWqi0deDNHsMKHpMVfR-nQg1s-Tohff2wdJXfR9r_Vw\"\n      ],\n      \"presence\": \"Offline\",\n      \"hasNewMoment\": false,\n      \"sender\": \"Liam\",\n      \"preview\": \"Don't forget water bottles!\",\n      \"previewKind\": \"Text\",\n      \"timeLabel\": \"10:42 AM\",\n      \"unreadCount\": 0,\n      \"deliveryStatus\": \"Sent\"\n    },\n    {\n      \"id\": \"david\",\n      \"title\": \"David Chen\",\n      \"titleEmoji\": null,\n      \"avatarUrls\": [\n        \"https://lh3.googleusercontent.com/aida-public/AB6AXuBODSbZN7FnJ6QPvSEcb_yDORNd9HqwwxUDruAOb69q8B2I_MEcS7eLqjfy60EaAACWjhthHBO-bWOWxIsixxc-gmh_JUJdnp8u4vfEg-NkZyAWgKcjjmNtWJIe5pgnj__Hl4Wz1cpm0e-6_v8VLJiJaAEQdyIemYypgKtKdcpnfyaTiFHxyUsiGl_y1-77Fzsezh9ZcJgWwv1z1z32OFKx3OrIqlSDA3qLzOZPsoP5UWYi64aBbghV2Q\"\n      ],\n      \"presence\": \"Offline\",\n      \"hasNewMoment\": false,\n      \"sender\": null,\n      \"preview\": \"Sent a photo 📷\",\n      \"previewKind\": \"Photo\",\n      \"timeLabel\": \"Yesterday\",\n      \"unreadCount\": 0,\n      \"deliveryStatus\": \"Read\"\n    },\n    {\n      \"id\": \"chloe\",\n      \"title\": \"Chloe Bennett\",\n      \"titleEmoji\": null,\n      \"avatarUrls\": [\n        \"https://lh3.googleusercontent.com/aida-public/AB6AXuB7sH6T7M9MkXDTmTN3pjP6gnaz_JP5Vv6fxoe19iDjJgzNynzkC6nAKhAv41zi-1Ml-r0iV9U3Cqps9OnLwxWvHbuQrtk16hJpLoaLGJ1mfMFVeP5R7OO_uyYTaIjpWpbJTuA0kuXp_7bRBlCRpoEMHr6EOSv52oy5ag_4R8Z_AJfgn448wYMYIflnCtHgNLPIbpjSomYB_Hj5EFI4DBkTVdwFpZXVU2x4kOtlC1h4mIIbOcu9ofz7RQ\"\n      ],\n      \"presence\": \"Online\",\n      \"hasNewMoment\": false,\n      \"sender\": null,\n      \"preview\": \"Voice note (0:24) 🎙️\",\n      \"previewKind\": \"VoiceNote\",\n      \"timeLabel\": \"Yesterday\",\n      \"unreadCount\": 1,\n      \"deliveryStatus\": null\n    },\n    {\n      \"id\": \"family\",\n      \"title\": \"Family Chat\",\n      \"titleEmoji\": \"❤️\",\n      \"avatarUrls\": [],\n      \"presence\": \"Offline\",\n      \"hasNewMoment\": false,\n      \"sender\": \"Mom\",\n      \"preview\": \"Have a great day sweetie!\",\n      \"previewKind\": \"Text\",\n      \"timeLabel\": \"Oct 18\",\n      \"unreadCount\": 0,\n      \"deliveryStatus\": \"Read\"\n    }\n  ],\n  \"dailyPing\": \"Share what made you laugh today with 3 friends!\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Chat thread",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/chats/:conversationId",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "chats",
+            ":conversationId"
+          ],
+          "variable": [
+            {
+              "key": "conversationId",
+              "value": "maya",
+              "description": "Conversation id or person id: maya, weekend-hikers, david, chloe, family, aaliyah, alex, elena, julian, liam, marcus, sarah, sofia"
+            }
+          ]
+        },
+        "description": "Chat Thread screen. `FreelyRepository.getChatThread(conversationId)` -> `ChatThread`.\n\nThe id is an inbox conversation id (`maya`, `weekend-hikers`, `david`, `chloe`, `family`) or a contact's person id. Maya's thread is the full designed conversation, other inbox chats return their last message, and people without a chat yet return an empty thread. Unknown ids return 404."
+      },
+      "response": [
+        {
+          "name": "maya",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/chats/maya",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "chats",
+                "maya"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"conversationId\": \"maya\",\n  \"contactName\": \"Maya Lin\",\n  \"contactAvatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuBpHQhc90WZxxyHFGBmao8433MF5glGrS_1EqPsO_cCWHuhKuSQ-z1TBhwbyjy2UZZBvp19_1mLsz5n8_IZOAkFPGGzP2DhGo4XhDBiDm92334gGQ99IxQjB52L22gXXRy0ZQTC70PRupeZi4A_CR_VLkhhprLbgnupuBDDdr7eYs-ucNE6TnADkdTR51ZxUuegrP-GInpFz5_L-g4ICpAdj7FJGoZrU6LrYdhl-nAyUXzHdum4vhPl9g\",\n  \"presence\": \"Online\",\n  \"statusLabel\": \"Online · Active now\",\n  \"isFavorite\": true,\n  \"dayLabel\": \"Today\",\n  \"messages\": [\n    {\n      \"type\": \"Text\",\n      \"id\": \"maya-1\",\n      \"fromMe\": false,\n      \"time\": \"2:15 PM\",\n      \"text\": \"Hey! Are we still on for coffee this afternoon? ☕\",\n      \"reaction\": null,\n      \"deliveryStatus\": null\n    },\n    {\n      \"type\": \"Text\",\n      \"id\": \"maya-2\",\n      \"fromMe\": true,\n      \"time\": \"2:16 PM\",\n      \"text\": \"Yes definitely! How about that cozy spot on 4th Street?\",\n      \"reaction\": \"❤️ 1\",\n      \"deliveryStatus\": \"Read\"\n    },\n    {\n      \"type\": \"VoiceMemo\",\n      \"id\": \"maya-3\",\n      \"fromMe\": false,\n      \"time\": \"2:18 PM\",\n      \"duration\": \"0:18\"\n    },\n    {\n      \"type\": \"Text\",\n      \"id\": \"maya-4\",\n      \"fromMe\": true,\n      \"time\": \"2:19 PM\",\n      \"text\": \"Sounds perfect, see you at 5:00! 🙌\",\n      \"reaction\": null,\n      \"deliveryStatus\": \"Read\"\n    },\n    {\n      \"type\": \"Place\",\n      \"id\": \"maya-5\",\n      \"fromMe\": false,\n      \"time\": \"2:20 PM\",\n      \"name\": \"The Roost Coffeehouse\",\n      \"details\": \"4th Street & Pine · 0.4 mi away\"\n    }\n  ],\n  \"isContactTyping\": true\n}"
+        },
+        {
+          "name": "weekend-hikers",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/chats/weekend-hikers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "chats",
+                "weekend-hikers"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"conversationId\": \"weekend-hikers\",\n  \"contactName\": \"Weekend Hikers\",\n  \"contactAvatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuAgoV_EfON2FnXS9F0xA41TeCy-RwsUFHOkk6PdjZRa5puyV2ldiGA1KkvzDiM670ZCaYPXDSudL5RPiP2pru1Lh1utC9q23MrRiW7r9M1lm7tfJZUfsTNrtjnG4y7wWF3jHcy86IZ5-ztHUAKKfttFlT8-bn5rB2gmueNGtSVpkdtx_cUTl4qeCFBa0cO4e9YU62w5rm7A0qlDMAIaf32CtFwsSICEDGhlvocyODbhQlZ74MB_PqkDrQ\",\n  \"presence\": \"Offline\",\n  \"statusLabel\": \"Group chat\",\n  \"isFavorite\": false,\n  \"dayLabel\": \"Today\",\n  \"messages\": [\n    {\n      \"type\": \"Text\",\n      \"id\": \"weekend-hikers-last\",\n      \"fromMe\": false,\n      \"time\": \"10:42 AM\",\n      \"text\": \"Liam: Don't forget water bottles!\",\n      \"reaction\": null,\n      \"deliveryStatus\": null\n    }\n  ],\n  \"isContactTyping\": false\n}"
+        },
+        {
+          "name": "david",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/chats/david",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "chats",
+                "david"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"conversationId\": \"david\",\n  \"contactName\": \"David Chen\",\n  \"contactAvatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuBODSbZN7FnJ6QPvSEcb_yDORNd9HqwwxUDruAOb69q8B2I_MEcS7eLqjfy60EaAACWjhthHBO-bWOWxIsixxc-gmh_JUJdnp8u4vfEg-NkZyAWgKcjjmNtWJIe5pgnj__Hl4Wz1cpm0e-6_v8VLJiJaAEQdyIemYypgKtKdcpnfyaTiFHxyUsiGl_y1-77Fzsezh9ZcJgWwv1z1z32OFKx3OrIqlSDA3qLzOZPsoP5UWYi64aBbghV2Q\",\n  \"presence\": \"Offline\",\n  \"statusLabel\": \"Offline\",\n  \"isFavorite\": false,\n  \"dayLabel\": \"Yesterday\",\n  \"messages\": [\n    {\n      \"type\": \"Text\",\n      \"id\": \"david-last\",\n      \"fromMe\": false,\n      \"time\": \"9:30 AM\",\n      \"text\": \"Sent a photo 📷\",\n      \"reaction\": null,\n      \"deliveryStatus\": null\n    }\n  ],\n  \"isContactTyping\": false\n}"
+        },
+        {
+          "name": "chloe",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/chats/chloe",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "chats",
+                "chloe"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"conversationId\": \"chloe\",\n  \"contactName\": \"Chloe Bennett\",\n  \"contactAvatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuB7sH6T7M9MkXDTmTN3pjP6gnaz_JP5Vv6fxoe19iDjJgzNynzkC6nAKhAv41zi-1Ml-r0iV9U3Cqps9OnLwxWvHbuQrtk16hJpLoaLGJ1mfMFVeP5R7OO_uyYTaIjpWpbJTuA0kuXp_7bRBlCRpoEMHr6EOSv52oy5ag_4R8Z_AJfgn448wYMYIflnCtHgNLPIbpjSomYB_Hj5EFI4DBkTVdwFpZXVU2x4kOtlC1h4mIIbOcu9ofz7RQ\",\n  \"presence\": \"Online\",\n  \"statusLabel\": \"Online · Active now\",\n  \"isFavorite\": false,\n  \"dayLabel\": \"Yesterday\",\n  \"messages\": [\n    {\n      \"type\": \"VoiceMemo\",\n      \"id\": \"chloe-last\",\n      \"fromMe\": false,\n      \"time\": \"9:30 AM\",\n      \"duration\": \"0:24\"\n    }\n  ],\n  \"isContactTyping\": false\n}"
+        },
+        {
+          "name": "family",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/chats/family",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "chats",
+                "family"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"conversationId\": \"family\",\n  \"contactName\": \"Family Chat\",\n  \"contactAvatarUrl\": null,\n  \"presence\": \"Offline\",\n  \"statusLabel\": \"Group chat\",\n  \"isFavorite\": false,\n  \"dayLabel\": \"Oct 18\",\n  \"messages\": [\n    {\n      \"type\": \"Text\",\n      \"id\": \"family-last\",\n      \"fromMe\": false,\n      \"time\": \"9:30 AM\",\n      \"text\": \"Mom: Have a great day sweetie!\",\n      \"reaction\": null,\n      \"deliveryStatus\": null\n    }\n  ],\n  \"isContactTyping\": false\n}"
+        },
+        {
+          "name": "aaliyah",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/chats/aaliyah",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "chats",
+                "aaliyah"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"conversationId\": \"aaliyah\",\n  \"contactName\": \"Aaliyah\",\n  \"contactAvatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuCCBGM6Hs52KZOD5N3liH9bOO2xW_KvDuqi1PKmN34qtau6BTl6lI5FJI39TAnJDrDf4n04RnNEVzwTMG9aX_5vLU6lX9WTEIuVFNGcxz2BmeKpnCjLecMHxQ-EiH66uvbfJcQhKTwFqdrTcJN3sUeWwS-nwt_MU_G7Q3-VVzzyoiNbdXr6p7yRsajyF2tYb8Nt5ry8PecvrhA2ehMolrWLxTb0vYJO1JJd8HL_sQv33IYXmgS1CvdsQg\",\n  \"presence\": \"Online\",\n  \"statusLabel\": \"Online · Active now\",\n  \"isFavorite\": false,\n  \"dayLabel\": \"Today\",\n  \"messages\": [],\n  \"isContactTyping\": false\n}"
+        },
+        {
+          "name": "alex",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/chats/alex",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "chats",
+                "alex"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"conversationId\": \"alex\",\n  \"contactName\": \"Alex\",\n  \"contactAvatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuBZRblpFLWXCI8lUCMAp6JbeyfLn9QEbhn8iTcOLvNCOJvRsRF3UG49Nen-H4wY7ahY55AnCaBl9JBcT6EQXxcxMpFlvA33ZwxtmZ2nURfARLdQ0etbUj5XW7KvGvWKo1sYYNpA_cuXuBfYs5m1CELI3GKJBRJFGNIt_Fo7D7N2BizSeJlZg_6KNzljExZuPIF8sRu-7L4X7QEjhJy6QBM6LP0c0Umtt0XOwYJZPZ_ZKR5FPf1m_78zCg\",\n  \"presence\": \"Online\",\n  \"statusLabel\": \"Online · Active now\",\n  \"isFavorite\": false,\n  \"dayLabel\": \"Today\",\n  \"messages\": [],\n  \"isContactTyping\": false\n}"
+        },
+        {
+          "name": "elena",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/chats/elena",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "chats",
+                "elena"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"conversationId\": \"elena\",\n  \"contactName\": \"Elena\",\n  \"contactAvatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuCeEmc5mRMaLTeV2f9pxVmjIkNI2rT2GyhvNeoZ77Hwlj2Ib39tn_j2SmMWcXSz4X4tfE5Rvt7tQvxxmqiDNi6bYhO_4o_r_ldSIej-T3ZM7eVvIVOiQLl5w2aZKhP7P_7GCLSFQeL_CmVZ1boUMYCL32gNfXNp2m64X3CRcOHDYlEggvwl80xbypC9KuWRTgILWrtVMvL25yjOgTZnTUcc24ouOMJwrf7KXCkdQAw2c6jE482CeCDSvg\",\n  \"presence\": \"Online\",\n  \"statusLabel\": \"Online · Active now\",\n  \"isFavorite\": false,\n  \"dayLabel\": \"Today\",\n  \"messages\": [],\n  \"isContactTyping\": false\n}"
+        },
+        {
+          "name": "julian",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/chats/julian",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "chats",
+                "julian"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"conversationId\": \"julian\",\n  \"contactName\": \"Julian\",\n  \"contactAvatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuCxl5BoZWjPREwLM7jG7rlXzG6THmfiPFYJFawNTMqyt1yo_GSUyHYpK45nQVKGitTjP-jcMkPfNuxLdBmP7CUAlGcAqn9KiyvhA-N6-z1bCvlD-_MfGd9uEl5_0ZaDY2gFnTLrgzYQPdRnq14NfZrWkwCYo0yw7DG29__8B7Yk8WLJnYLg81Wy7pXVNaBchvjNAj_XYj5TYqi1FLntIIseTdozxgFjECJM5ChJVeMFFkllRWIAl7YJhQ\",\n  \"presence\": \"Away\",\n  \"statusLabel\": \"Away · Back soon\",\n  \"isFavorite\": false,\n  \"dayLabel\": \"Today\",\n  \"messages\": [],\n  \"isContactTyping\": false\n}"
+        },
+        {
+          "name": "liam",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/chats/liam",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "chats",
+                "liam"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"conversationId\": \"liam\",\n  \"contactName\": \"Liam\",\n  \"contactAvatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuDlZThpw9yUtjI9gtiT6T_gU6lxCYSPPT8B6Lj6ZpSOtdLaX-1dGnVZLb_TWT31EGw18TuKXu0Y_uDKOrq7eJSQ6Bzm-vFmmP-Ao81I2to_zkG4pkOSjyNBWGXzOl2BBS8J18E8QxquNT7Tw7bO_IxkMtcaWzI07BfxBWs-MrxUUkxKUdgkudm-KxkTSB6KZ2r6_GnKajzAdmWb0idM9XRRUfZhXx_1USV4srjaU92zibNCfllmMLG8Qw\",\n  \"presence\": \"Online\",\n  \"statusLabel\": \"Online · Active now\",\n  \"isFavorite\": false,\n  \"dayLabel\": \"Today\",\n  \"messages\": [],\n  \"isContactTyping\": false\n}"
+        },
+        {
+          "name": "marcus",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/chats/marcus",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "chats",
+                "marcus"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"conversationId\": \"marcus\",\n  \"contactName\": \"Marcus\",\n  \"contactAvatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuBBMkXoOEQKeLKbPdcWUDJwfHy3zAvATRRdSR325sjM4Q0FBmf32e6aTYUNiu51ZWhPvjmJEUedUlqie8KmVIJJS2soFXfaFyz8-6HH3zMl0fHvgYi4m5zsdBxthbxQBYMd8PddRgMvg6yTfO7ai_bCysKLTIfq5iT4a_0Msh04XWUqan-VMhM6QsK-OdgN6DyUPm3LElAyYdxI5T41Z7lZf7VzimQCVpzs5EGvDaoCawh-bnkEz9FmoQ\",\n  \"presence\": \"Online\",\n  \"statusLabel\": \"Online · Active now\",\n  \"isFavorite\": false,\n  \"dayLabel\": \"Today\",\n  \"messages\": [],\n  \"isContactTyping\": false\n}"
+        },
+        {
+          "name": "sarah",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/chats/sarah",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "chats",
+                "sarah"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"conversationId\": \"sarah\",\n  \"contactName\": \"Sarah\",\n  \"contactAvatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuD62eBS47ia2ywthiu2LsXfl-zV5Mhd4uD-CzMHYf36ddyEfwGcz-XWuLO_bP_aGtOVBJjBRvaYeUGw8UvAvRNvr6fIljH-yy8Je1X0WFqXfQEdZLH-L3mLxqIi_bnGjX9H_nKjRLckR-t0UHwcOZWqp-d6C9lY67-EAzpD6UVBN6n5FC6A0QbquZVu530FW2f5d9JPQvXv0MtrT_vB1uJtx-A6YLKhLpo7ySaHjIsj_uCWHUpEJjOcEg\",\n  \"presence\": \"Online\",\n  \"statusLabel\": \"Online · Active now\",\n  \"isFavorite\": false,\n  \"dayLabel\": \"Today\",\n  \"messages\": [],\n  \"isContactTyping\": false\n}"
+        },
+        {
+          "name": "sofia",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/chats/sofia",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "chats",
+                "sofia"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"conversationId\": \"sofia\",\n  \"contactName\": \"Sofia\",\n  \"contactAvatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuBzCrwAeMTasasaLpSMnWo4mXmfHt28-QyJ-qfxQ6o1MuCp2ll0ssE5xJW1cYXGbc2E1mkvbObF-CZMiXFBrYw6humUoKrZE_kxFfi2aWzY-HUtf1USeybHoAcIhUOkCx4r0HBNACYII8uv6NCn0508FmKtAAFR1GcClMCblGJfSPJMOrMHId9AXnyKwuByoLvfEghe323cdWs5M6sIjMfxuOPDwU6MIOUx7O-8_mE3rPysHtiC3U88bw\",\n  \"presence\": \"Online\",\n  \"statusLabel\": \"Online · Active now\",\n  \"isFavorite\": false,\n  \"dayLabel\": \"Today\",\n  \"messages\": [],\n  \"isContactTyping\": false\n}"
+        },
+        {
+          "name": "404 unknown id",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/chats/{{conversationId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "chats",
+                "{{conversationId}}"
+              ]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"statusCode\": 404,\n  \"message\": \"No chat thread for this conversation id\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Contacts",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/contacts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts"
+          ]
+        },
+        "description": "Contacts tab. `FreelyRepository.getContacts()` -> `List<Person>`, sorted by name."
+      },
+      "response": [
+        {
+          "name": "200 OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/contacts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contacts"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n  {\n    \"id\": \"aaliyah\",\n    \"name\": \"Aaliyah\",\n    \"age\": 25,\n    \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuCCBGM6Hs52KZOD5N3liH9bOO2xW_KvDuqi1PKmN34qtau6BTl6lI5FJI39TAnJDrDf4n04RnNEVzwTMG9aX_5vLU6lX9WTEIuVFNGcxz2BmeKpnCjLecMHxQ-EiH66uvbfJcQhKTwFqdrTcJN3sUeWwS-nwt_MU_G7Q3-VVzzyoiNbdXr6p7yRsajyF2tYb8Nt5ry8PecvrhA2ehMolrWLxTb0vYJO1JJd8HL_sQv33IYXmgS1CvdsQg\",\n    \"presence\": \"Online\",\n    \"headline\": \"Illustrator\",\n    \"mutuals\": \"4 mutuals in Design Freely\",\n    \"interests\": [\n      {\n        \"emoji\": \"✏️\",\n        \"label\": \"Sketchbooks\"\n      },\n      {\n        \"emoji\": \"🌿\",\n        \"label\": \"Plant Swaps\"\n      },\n      {\n        \"emoji\": \"🎬\",\n        \"label\": \"Indie Films\"\n      }\n    ],\n    \"askMeAbout\": \"Which cafés still let you doodle on the napkins (I keep a list).\",\n    \"isVerified\": false,\n    \"hasNewMoment\": true,\n    \"photoUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuCCBGM6Hs52KZOD5N3liH9bOO2xW_KvDuqi1PKmN34qtau6BTl6lI5FJI39TAnJDrDf4n04RnNEVzwTMG9aX_5vLU6lX9WTEIuVFNGcxz2BmeKpnCjLecMHxQ-EiH66uvbfJcQhKTwFqdrTcJN3sUeWwS-nwt_MU_G7Q3-VVzzyoiNbdXr6p7yRsajyF2tYb8Nt5ry8PecvrhA2ehMolrWLxTb0vYJO1JJd8HL_sQv33IYXmgS1CvdsQg\"\n  },\n  {\n    \"id\": \"alex\",\n    \"name\": \"Alex\",\n    \"age\": 28,\n    \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuBZRblpFLWXCI8lUCMAp6JbeyfLn9QEbhn8iTcOLvNCOJvRsRF3UG49Nen-H4wY7ahY55AnCaBl9JBcT6EQXxcxMpFlvA33ZwxtmZ2nURfARLdQ0etbUj5XW7KvGvWKo1sYYNpA_cuXuBfYs5m1CELI3GKJBRJFGNIt_Fo7D7N2BizSeJlZg_6KNzljExZuPIF8sRu-7L4X7QEjhJy6QBM6LP0c0Umtt0XOwYJZPZ_ZKR5FPf1m_78zCg\",\n    \"presence\": \"Online\",\n    \"headline\": \"UX Writer\",\n    \"mutuals\": \"\",\n    \"interests\": [],\n    \"askMeAbout\": \"\",\n    \"isVerified\": false,\n    \"hasNewMoment\": false,\n    \"photoUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuBZRblpFLWXCI8lUCMAp6JbeyfLn9QEbhn8iTcOLvNCOJvRsRF3UG49Nen-H4wY7ahY55AnCaBl9JBcT6EQXxcxMpFlvA33ZwxtmZ2nURfARLdQ0etbUj5XW7KvGvWKo1sYYNpA_cuXuBfYs5m1CELI3GKJBRJFGNIt_Fo7D7N2BizSeJlZg_6KNzljExZuPIF8sRu-7L4X7QEjhJy6QBM6LP0c0Umtt0XOwYJZPZ_ZKR5FPf1m_78zCg\"\n  },\n  {\n    \"id\": \"chloe\",\n    \"name\": \"Chloe Bennett\",\n    \"age\": 24,\n    \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuB7sH6T7M9MkXDTmTN3pjP6gnaz_JP5Vv6fxoe19iDjJgzNynzkC6nAKhAv41zi-1Ml-r0iV9U3Cqps9OnLwxWvHbuQrtk16hJpLoaLGJ1mfMFVeP5R7OO_uyYTaIjpWpbJTuA0kuXp_7bRBlCRpoEMHr6EOSv52oy5ag_4R8Z_AJfgn448wYMYIflnCtHgNLPIbpjSomYB_Hj5EFI4DBkTVdwFpZXVU2x4kOtlC1h4mIIbOcu9ofz7RQ\",\n    \"presence\": \"Online\",\n    \"headline\": \"Graphic Designer\",\n    \"mutuals\": \"3 mutuals in Design Freely\",\n    \"interests\": [\n      {\n        \"emoji\": \"☕\",\n        \"label\": \"Coffee Hopping\"\n      },\n      {\n        \"emoji\": \"🎨\",\n        \"label\": \"Pottery\"\n      },\n      {\n        \"emoji\": \"🪴\",\n        \"label\": \"Indoor Jungle\"\n      }\n    ],\n    \"askMeAbout\": \"My favorite secret corner bookshops & warm matcha spots in the city!\",\n    \"isVerified\": true,\n    \"hasNewMoment\": true,\n    \"photoUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuAAjJ8DvXKnnwQ1TDUgKTc5basiJLlHodz5IrAMh4sGnJtDvc2lYYrBCU8eqFkEgNya0R62CU4FUzB_bWGjpuJJu1NFFyK7tQmYmHJWV2t83ZXfIrkcUldw-FkWmcz-fU9A1zyZxkJtoYSerjXqxRlfKXXrQJL261lA7Vcs9cGBTJxpi-YzVuiBxYf0YxN5vIMz53XsQSq-cPgr4hf-RuxxU7ltYgaGnUIIIufwohyN0QHuwGjQg3uXvQ\"\n  },\n  {\n    \"id\": \"david\",\n    \"name\": \"David Chen\",\n    \"age\": 29,\n    \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuBODSbZN7FnJ6QPvSEcb_yDORNd9HqwwxUDruAOb69q8B2I_MEcS7eLqjfy60EaAACWjhthHBO-bWOWxIsixxc-gmh_JUJdnp8u4vfEg-NkZyAWgKcjjmNtWJIe5pgnj__Hl4Wz1cpm0e-6_v8VLJiJaAEQdyIemYypgKtKdcpnfyaTiFHxyUsiGl_y1-77Fzsezh9ZcJgWwv1z1z32OFKx3OrIqlSDA3qLzOZPsoP5UWYi64aBbghV2Q\",\n    \"presence\": \"Offline\",\n    \"headline\": \"Barista & Home Cook\",\n    \"mutuals\": \"\",\n    \"interests\": [],\n    \"askMeAbout\": \"\",\n    \"isVerified\": false,\n    \"hasNewMoment\": false,\n    \"photoUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuBODSbZN7FnJ6QPvSEcb_yDORNd9HqwwxUDruAOb69q8B2I_MEcS7eLqjfy60EaAACWjhthHBO-bWOWxIsixxc-gmh_JUJdnp8u4vfEg-NkZyAWgKcjjmNtWJIe5pgnj__Hl4Wz1cpm0e-6_v8VLJiJaAEQdyIemYypgKtKdcpnfyaTiFHxyUsiGl_y1-77Fzsezh9ZcJgWwv1z1z32OFKx3OrIqlSDA3qLzOZPsoP5UWYi64aBbghV2Q\"\n  },\n  {\n    \"id\": \"elena\",\n    \"name\": \"Elena\",\n    \"age\": 24,\n    \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuCeEmc5mRMaLTeV2f9pxVmjIkNI2rT2GyhvNeoZ77Hwlj2Ib39tn_j2SmMWcXSz4X4tfE5Rvt7tQvxxmqiDNi6bYhO_4o_r_ldSIej-T3ZM7eVvIVOiQLl5w2aZKhP7P_7GCLSFQeL_CmVZ1boUMYCL32gNfXNp2m64X3CRcOHDYlEggvwl80xbypC9KuWRTgILWrtVMvL25yjOgTZnTUcc24ouOMJwrf7KXCkdQAw2c6jE482CeCDSvg\",\n    \"presence\": \"Online\",\n    \"headline\": \"Botanist\",\n    \"mutuals\": \"6 mutuals in Green Thumbs\",\n    \"interests\": [\n      {\n        \"emoji\": \"🌸\",\n        \"label\": \"Botanical Gardens\"\n      },\n      {\n        \"emoji\": \"🧺\",\n        \"label\": \"Picnics\"\n      },\n      {\n        \"emoji\": \"🎻\",\n        \"label\": \"Cello\"\n      }\n    ],\n    \"askMeAbout\": \"Which houseplants survive even the busiest week.\",\n    \"isVerified\": false,\n    \"hasNewMoment\": true,\n    \"photoUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuCeEmc5mRMaLTeV2f9pxVmjIkNI2rT2GyhvNeoZ77Hwlj2Ib39tn_j2SmMWcXSz4X4tfE5Rvt7tQvxxmqiDNi6bYhO_4o_r_ldSIej-T3ZM7eVvIVOiQLl5w2aZKhP7P_7GCLSFQeL_CmVZ1boUMYCL32gNfXNp2m64X3CRcOHDYlEggvwl80xbypC9KuWRTgILWrtVMvL25yjOgTZnTUcc24ouOMJwrf7KXCkdQAw2c6jE482CeCDSvg\"\n  },\n  {\n    \"id\": \"julian\",\n    \"name\": \"Julian\",\n    \"age\": 27,\n    \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuCxl5BoZWjPREwLM7jG7rlXzG6THmfiPFYJFawNTMqyt1yo_GSUyHYpK45nQVKGitTjP-jcMkPfNuxLdBmP7CUAlGcAqn9KiyvhA-N6-z1bCvlD-_MfGd9uEl5_0ZaDY2gFnTLrgzYQPdRnq14NfZrWkwCYo0yw7DG29__8B7Yk8WLJnYLg81Wy7pXVNaBchvjNAj_XYj5TYqi1FLntIIseTdozxgFjECJM5ChJVeMFFkllRWIAl7YJhQ\",\n    \"presence\": \"Away\",\n    \"headline\": \"Bookshop Owner\",\n    \"mutuals\": \"1 mutual in Book Club\",\n    \"interests\": [\n      {\n        \"emoji\": \"📖\",\n        \"label\": \"Mystery Novels\"\n      },\n      {\n        \"emoji\": \"♟️\",\n        \"label\": \"Chess\"\n      },\n      {\n        \"emoji\": \"☕\",\n        \"label\": \"Pour-over\"\n      }\n    ],\n    \"askMeAbout\": \"The rare first editions hiding on my top shelf.\",\n    \"isVerified\": false,\n    \"hasNewMoment\": false,\n    \"photoUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuCxl5BoZWjPREwLM7jG7rlXzG6THmfiPFYJFawNTMqyt1yo_GSUyHYpK45nQVKGitTjP-jcMkPfNuxLdBmP7CUAlGcAqn9KiyvhA-N6-z1bCvlD-_MfGd9uEl5_0ZaDY2gFnTLrgzYQPdRnq14NfZrWkwCYo0yw7DG29__8B7Yk8WLJnYLg81Wy7pXVNaBchvjNAj_XYj5TYqi1FLntIIseTdozxgFjECJM5ChJVeMFFkllRWIAl7YJhQ\"\n  },\n  {\n    \"id\": \"liam\",\n    \"name\": \"Liam\",\n    \"age\": 27,\n    \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuDlZThpw9yUtjI9gtiT6T_gU6lxCYSPPT8B6Lj6ZpSOtdLaX-1dGnVZLb_TWT31EGw18TuKXu0Y_uDKOrq7eJSQ6Bzm-vFmmP-Ao81I2to_zkG4pkOSjyNBWGXzOl2BBS8J18E8QxquNT7Tw7bO_IxkMtcaWzI07BfxBWs-MrxUUkxKUdgkudm-KxkTSB6KZ2r6_GnKajzAdmWb0idM9XRRUfZhXx_1USV4srjaU92zibNCfllmMLG8Qw\",\n    \"presence\": \"Online\",\n    \"headline\": \"Trail Runner\",\n    \"mutuals\": \"\",\n    \"interests\": [],\n    \"askMeAbout\": \"\",\n    \"isVerified\": false,\n    \"hasNewMoment\": true,\n    \"photoUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuDlZThpw9yUtjI9gtiT6T_gU6lxCYSPPT8B6Lj6ZpSOtdLaX-1dGnVZLb_TWT31EGw18TuKXu0Y_uDKOrq7eJSQ6Bzm-vFmmP-Ao81I2to_zkG4pkOSjyNBWGXzOl2BBS8J18E8QxquNT7Tw7bO_IxkMtcaWzI07BfxBWs-MrxUUkxKUdgkudm-KxkTSB6KZ2r6_GnKajzAdmWb0idM9XRRUfZhXx_1USV4srjaU92zibNCfllmMLG8Qw\"\n  },\n  {\n    \"id\": \"marcus\",\n    \"name\": \"Marcus\",\n    \"age\": 26,\n    \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuBBMkXoOEQKeLKbPdcWUDJwfHy3zAvATRRdSR325sjM4Q0FBmf32e6aTYUNiu51ZWhPvjmJEUedUlqie8KmVIJJS2soFXfaFyz8-6HH3zMl0fHvgYi4m5zsdBxthbxQBYMd8PddRgMvg6yTfO7ai_bCysKLTIfq5iT4a_0Msh04XWUqan-VMhM6QsK-OdgN6DyUPm3LElAyYdxI5T41Z7lZf7VzimQCVpzs5EGvDaoCawh-bnkEz9FmoQ\",\n    \"presence\": \"Online\",\n    \"headline\": \"Street Photographer\",\n    \"mutuals\": \"2 mutuals in Photo Walks\",\n    \"interests\": [\n      {\n        \"emoji\": \"📷\",\n        \"label\": \"Film Cameras\"\n      },\n      {\n        \"emoji\": \"🚲\",\n        \"label\": \"City Rides\"\n      },\n      {\n        \"emoji\": \"🎧\",\n        \"label\": \"Lo-fi Beats\"\n      }\n    ],\n    \"askMeAbout\": \"Hidden rooftops with the best golden-hour light.\",\n    \"isVerified\": true,\n    \"hasNewMoment\": true,\n    \"photoUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuBBMkXoOEQKeLKbPdcWUDJwfHy3zAvATRRdSR325sjM4Q0FBmf32e6aTYUNiu51ZWhPvjmJEUedUlqie8KmVIJJS2soFXfaFyz8-6HH3zMl0fHvgYi4m5zsdBxthbxQBYMd8PddRgMvg6yTfO7ai_bCysKLTIfq5iT4a_0Msh04XWUqan-VMhM6QsK-OdgN6DyUPm3LElAyYdxI5T41Z7lZf7VzimQCVpzs5EGvDaoCawh-bnkEz9FmoQ\"\n  },\n  {\n    \"id\": \"maya\",\n    \"name\": \"Maya Lin\",\n    \"age\": 25,\n    \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuCNF1SZv-WjZDpowfJ7ltU_idPkY5AoQsY9MLEC99NK6slwiYeP26tNPxC7m2Bo8b5nrj36uL-X509ZerHSRo3C16SrVTcNPBMcRC-qFa6-DiqOu0s8hgaVMenUuInCgkphXxajpbjgbaeEUVwGdEN3hQM8r5Wml5MBfC98xxPVM6JwVR3yHkU6WXtSr6sLQ4WUdBaFeSEMZzjhYSHXMi50eAQT2SH4ujq_ALhQiHmUITlKP8ujYTTyzg\",\n    \"presence\": \"Online\",\n    \"headline\": \"Product Designer\",\n    \"mutuals\": \"\",\n    \"interests\": [],\n    \"askMeAbout\": \"\",\n    \"isVerified\": false,\n    \"hasNewMoment\": true,\n    \"photoUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuCNF1SZv-WjZDpowfJ7ltU_idPkY5AoQsY9MLEC99NK6slwiYeP26tNPxC7m2Bo8b5nrj36uL-X509ZerHSRo3C16SrVTcNPBMcRC-qFa6-DiqOu0s8hgaVMenUuInCgkphXxajpbjgbaeEUVwGdEN3hQM8r5Wml5MBfC98xxPVM6JwVR3yHkU6WXtSr6sLQ4WUdBaFeSEMZzjhYSHXMi50eAQT2SH4ujq_ALhQiHmUITlKP8ujYTTyzg\"\n  },\n  {\n    \"id\": \"sarah\",\n    \"name\": \"Sarah\",\n    \"age\": 24,\n    \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuD62eBS47ia2ywthiu2LsXfl-zV5Mhd4uD-CzMHYf36ddyEfwGcz-XWuLO_bP_aGtOVBJjBRvaYeUGw8UvAvRNvr6fIljH-yy8Je1X0WFqXfQEdZLH-L3mLxqIi_bnGjX9H_nKjRLckR-t0UHwcOZWqp-d6C9lY67-EAzpD6UVBN6n5FC6A0QbquZVu530FW2f5d9JPQvXv0MtrT_vB1uJtx-A6YLKhLpo7ySaHjIsj_uCWHUpEJjOcEg\",\n    \"presence\": \"Online\",\n    \"headline\": \"Ceramics Teacher\",\n    \"mutuals\": \"\",\n    \"interests\": [],\n    \"askMeAbout\": \"\",\n    \"isVerified\": false,\n    \"hasNewMoment\": false,\n    \"photoUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuD62eBS47ia2ywthiu2LsXfl-zV5Mhd4uD-CzMHYf36ddyEfwGcz-XWuLO_bP_aGtOVBJjBRvaYeUGw8UvAvRNvr6fIljH-yy8Je1X0WFqXfQEdZLH-L3mLxqIi_bnGjX9H_nKjRLckR-t0UHwcOZWqp-d6C9lY67-EAzpD6UVBN6n5FC6A0QbquZVu530FW2f5d9JPQvXv0MtrT_vB1uJtx-A6YLKhLpo7ySaHjIsj_uCWHUpEJjOcEg\"\n  },\n  {\n    \"id\": \"sofia\",\n    \"name\": \"Sofia\",\n    \"age\": 23,\n    \"avatarUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuBzCrwAeMTasasaLpSMnWo4mXmfHt28-QyJ-qfxQ6o1MuCp2ll0ssE5xJW1cYXGbc2E1mkvbObF-CZMiXFBrYw6humUoKrZE_kxFfi2aWzY-HUtf1USeybHoAcIhUOkCx4r0HBNACYII8uv6NCn0508FmKtAAFR1GcClMCblGJfSPJMOrMHId9AXnyKwuByoLvfEghe323cdWs5M6sIjMfxuOPDwU6MIOUx7O-8_mE3rPysHtiC3U88bw\",\n    \"presence\": \"Online\",\n    \"headline\": \"Pastry Chef\",\n    \"mutuals\": \"5 mutuals in Brunch Club\",\n    \"interests\": [\n      {\n        \"emoji\": \"🥐\",\n        \"label\": \"Weekend Baking\"\n      },\n      {\n        \"emoji\": \"💃\",\n        \"label\": \"Salsa Nights\"\n      },\n      {\n        \"emoji\": \"📚\",\n        \"label\": \"Book Swaps\"\n      }\n    ],\n    \"askMeAbout\": \"The flakiest croissant I've ever made, and the three I burned first.\",\n    \"isVerified\": false,\n    \"hasNewMoment\": true,\n    \"photoUrl\": \"https://lh3.googleusercontent.com/aida-public/AB6AXuBzCrwAeMTasasaLpSMnWo4mXmfHt28-QyJ-qfxQ6o1MuCp2ll0ssE5xJW1cYXGbc2E1mkvbObF-CZMiXFBrYw6humUoKrZE_kxFfi2aWzY-HUtf1USeybHoAcIhUOkCx4r0HBNACYII8uv6NCn0508FmKtAAFR1GcClMCblGJfSPJMOrMHId9AXnyKwuByoLvfEghe323cdWs5M6sIjMfxuOPDwU6MIOUx7O-8_mE3rPysHtiC3U88bw\"\n  }\n]"
+        }
+      ]
+    },
+    {
+      "name": "Current user",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/me",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "me"
+          ]
+        },
+        "description": "Profile tab. `FreelyRepository.getCurrentUser()` -> `UserProfile`."
+      },
+      "response": [
+        {
+          "name": "200 OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"name\": \"Handsome User\",\n  \"handle\": \"@handsome_user\",\n  \"avatarUrl\": \"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=512&h=512&fit=crop&crop=faces&sat=-100&con=20&auto=format&q=80\",\n  \"isVerified\": true,\n  \"statusEmoji\": \"☕\",\n  \"statusText\": \"Coffee & creative work\",\n  \"moodLabel\": \"In a flow\",\n  \"stats\": [\n    {\n      \"value\": \"142\",\n      \"label\": \"Friends\"\n    },\n    {\n      \"value\": \"18\",\n      \"label\": \"Groups\"\n    },\n    {\n      \"value\": \"342\",\n      \"label\": \"Media Shared\"\n    }\n  ],\n  \"settings\": [\n    {\n      \"kind\": \"StatusMood\",\n      \"title\": \"Status & Mood\",\n      \"subtitle\": \"Custom status, away modes, busy sync\",\n      \"badge\": \"Active\"\n    },\n    {\n      \"kind\": \"Notifications\",\n      \"title\": \"Notifications & Sounds\",\n      \"subtitle\": \"Muted chats, mellow chime tones\",\n      \"badge\": null\n    },\n    {\n      \"kind\": \"PrivacySafety\",\n      \"title\": \"Privacy & Safety\",\n      \"subtitle\": \"Read receipts, last seen, blocked contacts\",\n      \"badge\": null\n    },\n    {\n      \"kind\": \"MediaLinksDocs\",\n      \"title\": \"Media, Links & Docs\",\n      \"subtitle\": \"Recent memories with friends\",\n      \"badge\": null\n    },\n    {\n      \"kind\": \"ChatTheme\",\n      \"title\": \"Chat Wallpaper & Theme\",\n      \"subtitle\": \"Coral warm glow, bubble colors\",\n      \"badge\": null\n    }\n  ],\n  \"recentMedia\": [\n    \"https://lh3.googleusercontent.com/aida-public/AB6AXuDcsB4inlceEkNYywivin2nU6swobtWeAnTvzRWaLFYcX4O1vAx4mJREWazaVefiPBvYaK0NpQ2U_so6sy2yqbx-E7veEFSkRmyYK1NW6vs33rRp517Kh9NR3-g_S0-n45enjgDpf5IQQvIkFrDu5jxDrzWoUmdBN9D8JCWOmCySnsBGgC_i2UeSnNJLaRuvgVgeblKNKI7MVlNkp6r3a-sidLTJ_6_40C8o6Td1Wwiu5TOPPzBDeWgxQ\",\n    \"https://lh3.googleusercontent.com/aida-public/AB6AXuC449Skmi3AdBR8x567PmWMjjc_s4iRJ3hDmon5UFjMy2nqqrtk79ImstqI4GYEQ1ZM2t0W4oz-CboUVqrEwbYKCVdi3U6dzo49ghrmYmAu8UiVPcnG3TONw0ymhyuGsIgANh2BIvymnJLdHXlzsig4guHC70pOQaAQZe1CGjPmOK90BKCivhWSVac4K3tNbAftiapQIkeHJptaLqwC7CzU4qBxlbhcOJ0NUBZZSrNDhduvcrifZG6DyA\",\n    \"https://lh3.googleusercontent.com/aida-public/AB6AXuADfqRLFVEtbOpq96cmrVr_mbdhFLdN9Azt8fvQqubBJOfwhx5ZEXRYzGQonaD-N47NsJqigiwu49wjC3FzxexhhI8PEEEKr4KEy5loJWoqBJtY_ttzbmyuWlVDV4_LmC0FD_qs5m9x2aJX9w-XaRAXq1uqvdG4xWx9QtgNWlItjYMOZC7Miw1pqOrrBMpROSmpjDzKgiMpv_0998YQJjQHt3jcOS1p082sIeYc6B3tOMakHkQGUvXpng\"\n  ],\n  \"moreMediaCount\": 339,\n  \"appVersion\": \"Freely v2.4.1\"\n}"
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://REPLACE-WITH-YOUR-MOCK-ID.mock.pstmn.io",
+      "type": "string"
+    }
+  ]
+}

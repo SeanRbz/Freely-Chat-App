@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- FreelyLogoMark for the system splash: a Sunrise-gradient tile with a white chat bubble.
+     Android 12+ clips this 288dp icon to a 192dp circle, so the 144dp tile sits well inside it. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="288dp"
+    android:height="288dp"
+    android:viewportWidth="288"
+    android:viewportHeight="288">
+    <path android:pathData="M124,72H164A52,52 0 0 1 216,124V164A52,52 0 0 1 164,216H124A52,52 0 0 1 72,164V124A52,52 0 0 1 124,72Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="72"
+                android:startY="144"
+                android:endX="216"
+                android:endY="144"
+                android:startColor="#FF5E36"
+                android:endColor="#FFB300" />
+        </aapt:attr>
+    </path>
+    <group
+        android:scaleX="3.5"
+        android:scaleY="3.5"
+        android:translateX="102"
+        android:translateY="102">
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M20,2L4,2c-1.1,0 -2,0.9 -2,2v18l4,-4h14c1.1,0 2,-0.9 2,-2L22,4c0,-1.1 -0.9,-2 -2,-2zM20,16L6,16l-2,2L4,4h16v12z" />
+    </group>
+</vector>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Not .Fullscreen: enableEdgeToEdge() draws behind a transparent status bar instead of a black cutout band. -->
+    <style name="Theme.ComposeApp" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/loop_background</item>
+    </style>
+
+    <!-- The logo tile on the app's cream background, so the splash hands off to Sign In without a color flash. -->
+    <style name="Theme.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/loop_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.ComposeApp</item>
+    </style>
+</resources>

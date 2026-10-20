@@ -1,0 +1,22 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Release signing passwords, read by app/build.gradle.kts
+/keystore.properties
+
+# Claude Code: local settings, and MCP config (.mcp.json holds the Stitch API key)
+/.claude/
+/.mcp.json
